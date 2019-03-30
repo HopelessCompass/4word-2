@@ -13,31 +13,29 @@
 <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
 
 <script type='text/babel'>
-
+var num = 0;
     class Words extends React.Component{
         constructor(props) {
             super(props);
             this.state = {
                 text: '',
-                arr: [],
-                counter: 0,
+                arr: []
             };
             this.changeHandler = this.changeHandler.bind(this);
             this.btnHandler = this.btnHandler.bind(this);
         }
 
         btnHandler() {
-            this.setState({arr: this.state.text.split(' '),
-            counter: 0});
+            this.setState({
+                arr: this.state.text.split(' ')});
+            num = 0;
 
             for (let i = 0; i < this.state.arr.length; i++) {
                 if (this.state.arr[i].length === 4) {
-                    this.setState({
-                        counter: this.state.counter + 1
-                    });
-                }
-            }
-        }
+                    num = num+1;
+                };
+            };
+        };
 
         changeHandler(){
             this.setState({
@@ -50,7 +48,7 @@
             return <div>
                 <input type="text" onChange={this.changeHandler} id={"textInput"}/>
                 <button onClick={this.btnHandler}>Посчитать</button>
-                <p>Слов из четырёх букв: {this.state.counter}</p>
+                <p>Слов из четырёх букв: {num}</p>
             </div>
         }
     }
